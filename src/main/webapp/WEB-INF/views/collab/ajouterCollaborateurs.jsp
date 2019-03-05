@@ -1,4 +1,3 @@
-<%@page import="java.util.List"%>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,17 +7,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap-3.3.7-dist/css/bootstrap.css"/>
 </head>
 <body>
-	<h1>Les collaborateurs</h1>
-	<ul>
-		<% 
-		List<String> listeNoms =(List<String>)request.getAttribute("listeNoms");
-			for (String nom : listeNoms) { 
-			%>
-			
-		<li><%= nom %></li>
-		<%}%>
+	<h1>Nouveau collaborateur</h1>
 		
-	</ul>
-	
 </body>
 </html>
