@@ -25,19 +25,29 @@ public class EditerCollaborateurController extends HttpServlet {
 		String nomParam = req.getParameter("nom");
 		String prenomParam = req.getParameter("prenom");
 		
+		Map<String, String> valueParam = new HashMap<String, String>();
+		valueParam.put("matricule",matriculeParam);
+		valueParam.put("titre",titreParam);
+		valueParam.put("nom",nomParam);
+		valueParam.put("prenom",prenomParam);
 		
 		resp.setContentType("text/html");
 		
 		if(matriculeParam == null || titreParam == null || nomParam == null || prenomParam == null){
-			resp.sendError(400, "Les paramètres suivants sont incorrects");
+			String messageError = "Les paramètres suivants sont incorrects : ";
+			
+			for(Map.Entry<String, String> value:valueParam.entrySet()){
+				if(value.getValue() == null){
+					messageError += value.getKey() + ", ";
+				}
+			}
+			resp.sendError(400, messageError);
 			
 		}else{
 			// code HTML ecrit dans le corps de la reponse
 			resp.getWriter().write ("<h1>Creation d’un collaborateur avec les informations suivantes : </h1> <br>" 
-									+ "<p> matricule="+ matriculeParam + ",</p>"
-									+ "<p> titre="+ titreParam + ",</p>"
-									+ "<p> nom="+ nomParam + ",</p>"
-									+ "<p> prenom="+ prenomParam + "</p>"
+									+ "<p> matricule="+ matriculeParam + ", titre="+ titreParam + 
+									", nom="+ nomParam + ", prenom="+ prenomParam + "</p>"
 									
 					);
 		}
