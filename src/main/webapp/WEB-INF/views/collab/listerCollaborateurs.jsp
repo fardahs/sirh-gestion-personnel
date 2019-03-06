@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@page import="dev.sgp.entite.Collaborateur"%>
 <%@page import="dev.sgp.entite.Departement"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +14,9 @@
 </head>
 <body>
 	<h1>Les collaborateurs</h1>
+
+
+
 
 	<label for="recherche">Rechercher un nom ou un prénom qui
 		commence par :</label>
@@ -35,24 +39,24 @@
 	<p>Voir les collaborateurs désactivés</p>
 	<div class="container">
 
-		<ul>
-			<%
-				List<Collaborateur> listeCollaborateur = (List<Collaborateur>) request.getAttribute("listeCollaborateur");
-				for (Collaborateur nom : listeCollaborateur) {
-			%>
+		<% List<Collaborateur> listeCollaborateur = (List<Collaborateur>) request.getAttribute("listeCollaborateur"); %>
+
+		<c:forEach var="collaborateur" items="${ listeCollaborateur}">
 			<div class="panel panel-default">
-				<div class="panel-heading"><%=nom.getNom()%>
-					<%=nom.getPrenom()%></div>
-				<li><%=nom.getMatricule()%></li>
-				<li><%=nom.getDateDeNaissance()%></li>
-				<li><%=nom.getEmailPro()%></li>
-				<li><%=nom.getPhoto()%></li>
-				<li><%=nom.getDateHeureCreation()%></li>
-				<%
-					}
-				%>
-			
-		</ul>
+				<div class="panel-heading">
+					<c:out value="${collaborateur.getNom()}" />
+					<c:out value="${collaborateur.getPrenom()}" />
+				</div>
+				<div class="panel-body">
+				<c:out value="${collaborateur.getMatricule()}" />
+				<c:out value="${collaborateur.getDateDeNaissance()}" />
+				<c:out value="${collaborateur.getEmailPro()}" />
+				<c:out value="${collaborateur.getPhoto()}" />
+				<c:out value="${collaborateur.getDateHeureCreation()}" />
+			</div>
+			</div>
+		</c:forEach>
+
 	</div>
 	</div>
 </body>
