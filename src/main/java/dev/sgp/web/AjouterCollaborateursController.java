@@ -54,7 +54,7 @@ public class AjouterCollaborateursController extends HttpServlet {
 		nouveauCollaborateur.setEmailPro(email);
 		
 		/* Photo par défaut */
-		nouveauCollaborateur.setPhoto("default.png");
+		//nouveauCollaborateur.setPhoto(getServletContext().getResourceAsStream("/src/main/webapp/images/default.png"));
 
 		nouveauCollaborateur.setMatricule("M" +  collabService.listerCollaborateurs().size() + 1 );
 		nouveauCollaborateur.setDateHeureCreation(localdate.atZone(ZoneId.systemDefault()));
